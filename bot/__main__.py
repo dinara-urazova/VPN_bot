@@ -1,6 +1,6 @@
-import json
 from bot.api_client import send_message, delete_message, get_updates
 import time
+from bot.api_client import InlineButton
 
 next_update_id = 0
 
@@ -22,7 +22,7 @@ while True:
             message_id = message.get("message_id")
             if not chat_id or not message_text:
                 continue
-            if message_text =="/start":
+            if message_text == "/start":
                 text = "👋 Привет!  Это Telegram-бот для подключения к VPN. Вам доступен бесплатный период - 10 дней. Для начала работы нажмите в меню кнопку ⚡️Подключиться ↓"
                 reply_buttons = [
                     ["ℹ️ Статус", "⚡️ Подключиться"],
@@ -33,7 +33,7 @@ while True:
                     text=text,
                     reply_buttons=reply_buttons,
                 )
-    
+
             elif message_text in "ℹ️ Статус":
                 delete_message(chat_id, message_id)
             elif message_text == "⚡️ Подключиться":
@@ -44,17 +44,30 @@ while True:
                 delete_message(chat_id, message_id)
                 text = "Если у вас проблемы с подключением, отправьте статус из бота и скриншот из приложения, которым вы пользуетесь для доступа к VPN в поддержку.Ниже представлены инструкции для подключения к сервису ↓"
                 url_buttons = [
-                    ("Подключить iOS/MacOS 🍏", "https://telegra.ph/Podklyuchenie-v2raytun-iOS-11-09"),
-                    ("ПОдключить Android 🤖", "https://telegra.ph/Podklyuchenie-v2RayTun-Android-11-09"),
-                    ("Подключить Windows 🖥️", "https://telegra.ph/Nastrojka-VPN-PK-Windows-08-08"),
-                    ("🆘Поддержка", "https://web.telegram.org/k/#@artydevx"),
+                    InlineButton(
+                        text="Подключить iOS/MacOS 🍏",
+                        url="https://telegra.ph/Podklyuchenie-v2raytun-iOS-11-09",
+                    ),
+                    InlineButton(
+                        text="Подключить Android 🤖",
+                        url="https://telegra.ph/Podklyuchenie-v2RayTun-Android-11-09",
+                    ),
+                    InlineButton(
+                        text="Подключить Windows 🖥️",
+                        url="https://telegra.ph/Nastrojka-VPN-PK-Windows-08-08",
+                    ),
+                    InlineButton(
+                        text="🆘Поддержка",
+                        url="https://web.telegram.org/k/#@artydevx",
+                    ),
+                    InlineButton(
+                        text="Назад",
+                        url="go_back",
+                    ),
                 ]
-                callback_buttons = [("Назад", "go_back")]
                 send_message(chat_id=chat_id, text=text, inline_url_buttons=url_buttons)
-                send_message(chat_id=chat_id, text=text, inline_callback_buttons=callback_buttons)
 
     except Exception as e:
         print(f"The error is {e}")
 
     time.sleep(2)
-
