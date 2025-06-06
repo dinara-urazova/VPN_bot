@@ -52,9 +52,9 @@ def send_message(chat_id: int, text: str, reply_buttons=None, inline_url_buttons
     if reply_buttons:
         params["reply_markup"] = reply_keyboard_builder(reply_buttons)
     elif inline_url_buttons:
-        params["reply_markup"] = reply_keyboard_builder(inline_url_buttons)
+        params["reply_markup"] = inline_keyboard_builder(inline_url_buttons)
     elif inline_callback_buttons:
-        params["reply_markup"] = reply_keyboard_builder(inline_callback_buttons)
+        params["reply_markup"] = inline_keyboard_callbacks_builder(inline_callback_buttons)
 
     requests.post(f"https://api.telegram.org/bot{token}/sendMessage", params=params)
   

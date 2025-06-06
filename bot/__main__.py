@@ -49,7 +49,7 @@ while True:
                     ("Подключить Windows 🖥️", "https://telegra.ph/Nastrojka-VPN-PK-Windows-08-08"),
                     ("🆘Поддержка", "https://web.telegram.org/k/#@artydevx"),
                 ]
-                callback_buttons = [("Назад")]
+                callback_buttons = [("Назад", "go_back")]
                 send_message(chat_id=chat_id, text=text, inline_url_buttons=url_buttons)
                 send_message(chat_id=chat_id, text=text, inline_callback_buttons=callback_buttons)
 
