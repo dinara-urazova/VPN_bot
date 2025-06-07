@@ -39,27 +39,11 @@ def inline_keyboard_builder(buttons: list[InlineButton]) -> str | None:
     return json.dumps({"inline_keyboard": result})
 
 
-def inline_keyboard_callbacks_builder(buttons: list) -> str | None:
-    if not buttons:
-        return None
-    result = []
-    for text, callback_data in buttons:
-        result.append(
-            {
-                "text": text,
-                "callback_data": callback_data,
-            }
-        )
-
-    return json.dumps({"inline_keyboard": [result]})
-
-
 def send_message(
     chat_id: int,
     text: str,
     reply_buttons=None,
     inline_url_buttons=None,
-    inline_callback_buttons=None,
 ):
     params = {
         "chat_id": chat_id,

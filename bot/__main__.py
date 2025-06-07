@@ -58,7 +58,7 @@ while True:
                     ),
                     InlineButton(
                         text="🆘Поддержка",
-                        url="https://web.telegram.org/k/#@artydevx",
+                        url="https://t.me/olegsklyarov",
                     ),
                     InlineButton(
                         text="Назад",
