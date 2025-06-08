@@ -1,5 +1,6 @@
 from bot.api_client import InlineButton
 
+
 def start_button():
     text = "👋 Привет!  Это Telegram-бот для подключения к VPN. Вам доступен бесплатный период - 10 дней. Для начала работы нажмите в меню кнопку ⚡️Подключиться ↓"
     reply_buttons = [
@@ -160,73 +161,73 @@ def help_button():
 def one_month():
     text = "👌 Доступ: 1 месяц"
     url_buttons = [
-            [
-                InlineButton(
-                    text="Оплатить!",
-                    url="https://yoomoney.ru/checkout/payments/v2/contract?orderId=2fd80e8e-000f-5001-9000-116ba49e2301",
-                )
-            ],
-            [
-                InlineButton(
-                    text="Оплатить криптовалютой!",
-                    url="https://pay.heleket.com/pay/82849eb2-6993-4f1a-bfef-634363fe0e33",
-                ),
-            ],
-            [
-                InlineButton(
-                    text="Назад",
-                    url="go_back",
-                )
-            ],
-        ] 
+        [
+            InlineButton(
+                text="Оплатить!",
+                url="https://yoomoney.ru/checkout/payments/v2/contract?orderId=2fd80e8e-000f-5001-9000-116ba49e2301",
+            )
+        ],
+        [
+            InlineButton(
+                text="Оплатить криптовалютой!",
+                url="https://pay.heleket.com/pay/82849eb2-6993-4f1a-bfef-634363fe0e33",
+            ),
+        ],
+        [
+            InlineButton(
+                text="Назад",
+                url="go_back",
+            )
+        ],
+    ]
     return text, url_buttons
 
 
 def three_months():
     text = "⚡️ Доступ: 3 месяца"
     url_buttons = [
-            [
-                InlineButton(
-                    text="Оплатить!",
-                    url="https://yoomoney.ru/checkout/payments/v2/contract?orderId=2fd81412-000f-5000-b000-16758ebff8c7",
-                )
-            ],
-            [
-                InlineButton(
-                    text="Оплатить криптовалютой!",
-                    url="https://pay.heleket.com/pay/e5604090-8520-409f-9f29-f267b0342bc3",
-                ),
-            ],
-            [
-                InlineButton(
-                    text="Назад",
-                    url="go_back",
-                )
-            ],
-        ] 
+        [
+            InlineButton(
+                text="Оплатить!",
+                url="https://yoomoney.ru/checkout/payments/v2/contract?orderId=2fd81412-000f-5000-b000-16758ebff8c7",
+            )
+        ],
+        [
+            InlineButton(
+                text="Оплатить криптовалютой!",
+                url="https://pay.heleket.com/pay/e5604090-8520-409f-9f29-f267b0342bc3",
+            ),
+        ],
+        [
+            InlineButton(
+                text="Назад",
+                url="go_back",
+            )
+        ],
+    ]
     return text, url_buttons
 
 
 def six_months():
     text = "🔥 Доступ: 6 месяцев"
     url_buttons = [
-            [
-                InlineButton(
-                    text="Оплатить!",
-                    url="https://yoomoney.ru/checkout/payments/v2/contract?orderId=2fd81416-000f-5000-8000-121edbfaa249",
-                )
-            ],
-            [
-                InlineButton(
-                    text="Оплатить криптовалютой!",
-                    url="https://pay.heleket.com/pay/e5604090-8520-409f-9f29-f267b0342bc3",
-                ),
-            ],
-            [
-                InlineButton(
-                    text="Назад",
-                    url="go_back",
-                )
-            ],
-        ] 
+        [
+            InlineButton(
+                text="Оплатить!",
+                url="https://yoomoney.ru/checkout/payments/v2/contract?orderId=2fd81416-000f-5000-8000-121edbfaa249",
+            )
+        ],
+        [
+            InlineButton(
+                text="Оплатить криптовалютой!",
+                url="https://pay.heleket.com/pay/e5604090-8520-409f-9f29-f267b0342bc3",
+            ),
+        ],
+        [
+            InlineButton(
+                text="Назад",
+                url="go_back",
+            )
+        ],
+    ]
     return text, url_buttons
