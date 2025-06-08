@@ -26,6 +26,62 @@ def process_update_message(message: dict):
             delete_message(chat_id, message_id)
         elif message_text == "⚡️ Подключиться":
             delete_message(chat_id, message_id)
+            text = (
+                "Доступ к VPN в 2 шага:\n\n"
+                "1️⃣ <b>Скачать</b> – для скачивания приложения\n"
+                "2️⃣ <b>Подключить</b> – для добавления подписки\n\n"
+                "<b>Настроить VPN вручную:</b>\n"
+                '– <a href="https://telegra.ph/Podklyuchenie-v2RayTun-Android-11-09">Инструкция для Android 🤖</a>\n'
+                '– <a href="https://telegra.ph/Podklyuchenie-v2raytun-iOS-11-09">Инструкция для iOS/MacOS 🍏</a>\n'
+                '– <a href="https://telegra.ph/Nastrojka-VPN-PK-Windows-08-08">Инструкция для Windows 🖥</a>\n\n'
+                "<b>Ссылка для ручного подключения</b>\n"
+                "<i>Тапните чтобы скопировать в буфер обмена ↓</i>"
+            )
+            url_buttons = [
+                [
+                    InlineButton(
+                        text="Скачать Android 🤖",
+                        url="https://play.google.com/store/apps/details?id=com.v2raytun.android&hl=ru&gl=US",
+                    ),
+                    InlineButton(
+                        text="Подключить Android 🤖",
+                        url="https://apps.artydev.ru/?url=v2raytun://import/https://u.mrzb.artydev.ru/c/2f18b7c0x3f20f8ac#MatadoraVPN",
+                    ),
+                ],
+                [
+                    InlineButton(
+                        text="Скачать iOS 🍏",
+                        url="https://apps.apple.com/ru/app/v2raytun/id6476628951",
+                    ),
+                    InlineButton(
+                        text="Подключить iOS 🍏",
+                        url="https://apps.artydev.ru/?url=v2rayTun://import/https://u.mrzb.artydev.ru/c/2f18b7c0x3f20f8ac#MatadoraVPN",
+                    ),
+                ],
+                [
+                    InlineButton(
+                        text="Скачать Windows 🖥️",
+                        url="Hiddify-Windows-Setup-x64.exe",
+                    ),
+                    InlineButton(
+                        text="Подключить Windows 🖥️",
+                        url="https://apps.artydev.ru/?url=hiddify://import/https://u.mrzb.artydev.ru/c/2f18b7c0x3f20f8ac",
+                    ),
+                ],
+                [
+                    InlineButton(
+                        text="Назад",
+                        url="go_back",
+                    )
+                ],
+            ]
+            send_message(
+                chat_id=chat_id,
+                text=text,
+                parse_mode="HTML",
+                inline_url_buttons=url_buttons,
+            )
+
         elif message_text == "🔥 Купить":
             delete_message(chat_id, message_id)
         elif message_text == "❓ Помощь":
