@@ -88,26 +88,36 @@ def process_update_message(message: dict):
             delete_message(chat_id, message_id)
             text = "Если у вас проблемы с подключением, отправьте статус из бота и скриншот из приложения, которым вы пользуетесь для доступа к VPN в поддержку.Ниже представлены инструкции для подключения к сервису ↓"
             url_buttons = [
-                [InlineButton(
-                    text="Подключить iOS/MacOS 🍏",
-                    url="https://telegra.ph/Podklyuchenie-v2raytun-iOS-11-09",
-                )],
-                [InlineButton(
-                    text="Подключить Android 🤖",
-                    url="https://telegra.ph/Podklyuchenie-v2RayTun-Android-11-09",
-                )],
-                [InlineButton(
-                    text="Подключить Windows 🖥️",
-                    url="https://telegra.ph/Nastrojka-VPN-PK-Windows-08-08",
-                )],
-                [InlineButton(
-                    text="🆘Поддержка",
-                    url="https://t.me/olegsklyarov",
-                )],
-                [InlineButton(
-                    text="Назад",
-                    url="go_back",
-                )],
+                [
+                    InlineButton(
+                        text="Подключить iOS/MacOS 🍏",
+                        url="https://telegra.ph/Podklyuchenie-v2raytun-iOS-11-09",
+                    )
+                ],
+                [
+                    InlineButton(
+                        text="Подключить Android 🤖",
+                        url="https://telegra.ph/Podklyuchenie-v2RayTun-Android-11-09",
+                    )
+                ],
+                [
+                    InlineButton(
+                        text="Подключить Windows 🖥️",
+                        url="https://telegra.ph/Nastrojka-VPN-PK-Windows-08-08",
+                    )
+                ],
+                [
+                    InlineButton(
+                        text="🆘Поддержка",
+                        url="https://t.me/olegsklyarov",
+                    )
+                ],
+                [
+                    InlineButton(
+                        text="Назад",
+                        url="go_back",
+                    )
+                ],
             ]
             send_message(chat_id=chat_id, text=text, inline_url_buttons=url_buttons)
     except Exception as e:
