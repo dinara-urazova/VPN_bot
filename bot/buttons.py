@@ -92,19 +92,19 @@ def buy_button():
         [
             InlineButton(
                 text="✅ 1 Месяц",
-                url="1_month",
+                url="one_month",
             )
         ],
         [
             InlineButton(
                 text="🔥 3 Месяца",
-                url="3_months",
+                url="three_months",
             ),
         ],
         [
             InlineButton(
                 text="🚀 6 Месяцев",
-                url="6_months",
+                url="six_months",
             )
         ],
         [
@@ -118,7 +118,10 @@ def buy_button():
 
 
 def help_button():
-    text = "Если у вас проблемы с подключением, отправьте статус из бота и скриншот из приложения, которым вы пользуетесь для доступа к VPN в поддержку.Ниже представлены инструкции для подключения к сервису ↓"
+    text = (
+        "Если у вас проблемы с подключением, отправьте статус из бота и скриншот из приложения, которым вы пользуетесь для доступа к VPN в поддержку.\n\n"
+        "Ниже представлены инструкции для подключения к сервису ↓"
+    )
     url_buttons = [
         [
             InlineButton(
@@ -151,4 +154,79 @@ def help_button():
             )
         ],
     ]
+    return text, url_buttons
+
+
+def one_month():
+    text = "👌 Доступ: 1 месяц"
+    url_buttons = [
+            [
+                InlineButton(
+                    text="Оплатить!",
+                    url="https://yoomoney.ru/checkout/payments/v2/contract?orderId=2fd80e8e-000f-5001-9000-116ba49e2301",
+                )
+            ],
+            [
+                InlineButton(
+                    text="Оплатить криптовалютой!",
+                    url="https://pay.heleket.com/pay/82849eb2-6993-4f1a-bfef-634363fe0e33",
+                ),
+            ],
+            [
+                InlineButton(
+                    text="Назад",
+                    url="go_back",
+                )
+            ],
+        ] 
+    return text, url_buttons
+
+
+def three_months():
+    text = "⚡️ Доступ: 3 месяца"
+    url_buttons = [
+            [
+                InlineButton(
+                    text="Оплатить!",
+                    url="https://yoomoney.ru/checkout/payments/v2/contract?orderId=2fd81412-000f-5000-b000-16758ebff8c7",
+                )
+            ],
+            [
+                InlineButton(
+                    text="Оплатить криптовалютой!",
+                    url="https://pay.heleket.com/pay/e5604090-8520-409f-9f29-f267b0342bc3",
+                ),
+            ],
+            [
+                InlineButton(
+                    text="Назад",
+                    url="go_back",
+                )
+            ],
+        ] 
+    return text, url_buttons
+
+
+def six_months():
+    text = "🔥 Доступ: 6 месяцев"
+    url_buttons = [
+            [
+                InlineButton(
+                    text="Оплатить!",
+                    url="https://yoomoney.ru/checkout/payments/v2/contract?orderId=2fd81416-000f-5000-8000-121edbfaa249",
+                )
+            ],
+            [
+                InlineButton(
+                    text="Оплатить криптовалютой!",
+                    url="https://pay.heleket.com/pay/e5604090-8520-409f-9f29-f267b0342bc3",
+                ),
+            ],
+            [
+                InlineButton(
+                    text="Назад",
+                    url="go_back",
+                )
+            ],
+        ] 
     return text, url_buttons

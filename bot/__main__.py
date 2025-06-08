@@ -1,6 +1,6 @@
 from bot.api_client import send_message, delete_message, get_updates
 import time
-from bot.buttons import start_button, status_button, connection_button, buy_button, help_button
+from bot.buttons import start_button, status_button, connection_button, buy_button, help_button, one_month, three_months, six_months
 
 
 def process_update_message(message: dict):
@@ -53,11 +53,15 @@ def process_update_message(message: dict):
         elif message_text == "❓ Помощь":
             delete_message(chat_id, message_id)
             text, url_buttons = help_button()
-            send_message(chat_id=chat_id, text=text, inline_url_buttons=url_buttons)
+            send_message(
+                chat_id=chat_id, 
+                text=text,
+                parse_mode="HTML", 
+                inline_url_buttons=url_buttons,
+                )
 
     except Exception as e:
         print(f"The error is {repr(e)}")
-
 
 def process_update_callback(callback_query: dict):
     try:
@@ -71,11 +75,20 @@ def process_update_callback(callback_query: dict):
 
         if data == "go_back":
             delete_message(chat_id, message_id)
+        else:
+            buy_options = {"one_month": one_month, "three_months": three_months, "six_months": six_months}
+            if data in buy_options:
+                text, url_buttons = buy_options[data]()
+                send_message(chat_id=chat_id, text=text, inline_url_buttons=url_buttons)
+            else:
+                print(f"Unknown callback data: {data}")
+
     except Exception as e:
         print(f"The error is {repr(e)}")
-
-
+    
+    
 next_update_id = 0
+
 while True:
     try:  # ask Telegram for new updates
         response = get_updates(next_update_id)
