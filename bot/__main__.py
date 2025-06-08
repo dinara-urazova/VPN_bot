@@ -29,7 +29,15 @@ def process_update_message(message: dict):
                 "├ Осталось дней: 10\n"
                 "└ Активна до: 20.06.2025 18:00"
             )
-            send_message(chat_id=chat_id, text=text, parse_mode="HTML")
+            url_buttons = [
+                [
+                    InlineButton(
+                        text="Назад",
+                        url="go_back",
+                    )
+                ],
+            ]
+            send_message(chat_id=chat_id, text=text, parse_mode="HTML", inline_url_buttons=url_buttons)
 
         elif message_text == "⚡️ Подключиться":
             delete_message(chat_id, message_id)
