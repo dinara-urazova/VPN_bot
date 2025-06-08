@@ -37,7 +37,12 @@ def process_update_message(message: dict):
                     )
                 ],
             ]
-            send_message(chat_id=chat_id, text=text, parse_mode="HTML", inline_url_buttons=url_buttons)
+            send_message(
+                chat_id=chat_id,
+                text=text,
+                parse_mode="HTML",
+                inline_url_buttons=url_buttons,
+            )
 
         elif message_text == "⚡️ Подключиться":
             delete_message(chat_id, message_id)
