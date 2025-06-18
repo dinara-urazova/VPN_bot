@@ -73,6 +73,6 @@ def get_updates(next_update_id: int):
         f"https://api.telegram.org/bot{token}/getUpdates",
         params={
             "offset": next_update_id,
-            "allowed_updates": ["message", "callback_query"],
+            "allowed_updates": json.dumps(["message", "callback_query"]),
         },
     )
