@@ -27,7 +27,9 @@ class UserStoragePostgreSQL:
         result = PostgreSQLSingleton.getConnection().run(
             f"SELECT 1 FROM users WHERE telegram_id = {telegram_id}"  # мб unsafe (sql_injections) и дб параметризация, но ее нет в pg8000.native
         )
-        return bool(result) # True if there's a user  - list with 1, False if None (empty list)
+        return bool(
+            result
+        )  # True if there's a user  - list with 1, False if None (empty list)
 
     def add_user(self, user: User) -> None:
         created_at = updated_at = datetime.now(timezone.utc).isoformat()
