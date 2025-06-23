@@ -3,3 +3,5 @@ requests
 pydantic-settings==2.6.1
 ruff
 black
+pg8000
+
