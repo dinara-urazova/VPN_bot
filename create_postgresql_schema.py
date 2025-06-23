@@ -6,7 +6,7 @@ connection = pg8000.connect(
     password=env_config.postgresql_password,
     host=env_config.postgresql_hostname,
     port=env_config.postgresql_port,
-    database=env_config.postgresql_database
+    database=env_config.postgresql_database,
 )
 
 cursor = connection.cursor()
@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS users (
     first_name VARCHAR(255) NOT NULL, 
     last_name VARCHAR(255) NULL,
     username VARCHAR(255) NULL, 
-    created_at TIMESTAMP, 
-    updated_at TIMESTAMP
+    created_at TEXT, 
+    updated_at TEXT
     );
 """
 
@@ -27,4 +27,3 @@ connection.commit()
 
 cursor.close()
 connection.close()
-

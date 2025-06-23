@@ -1,4 +1,7 @@
+import traceback
 from bot.api_client import send_message, delete_message, get_updates
+from user_storage_postgresql import UserStoragePostgreSQL
+from user import User
 import time
 from bot.buttons import (
     start_button,
@@ -11,16 +14,32 @@ from bot.buttons import (
     six_months,
 )
 
+user_storage = UserStoragePostgreSQL()
+OWNER_CHAT_ID = 1059125420
+broadcast_mode = False
+
 
 def process_update_message(message: dict):
     try:
-        message_text = message.get("text")
         chat_id = message.get("chat", {}).get("id")
         message_id = message.get("message_id")
+        user = message.get("from")
 
-        if not chat_id or not message_text:
+        if not chat_id or not user: # убрала `if not message`, чтобы мб принимать 'not msg' и добавлять users в db
             return None
 
+        telegram_id = user.get("id")
+        first_name = user.get("first_name")
+        last_name = user.get("last_name")
+        username = user.get("username")
+
+        if not user_storage.user_exists(
+            telegram_id
+        ):  # если нет пользователя в тб БД - добавляем его, если есть - ничего не делаем
+            user = User(telegram_id, first_name, last_name, username)
+            user_storage.add_user(user)
+
+        message_text = message.get("text")
         if message_text == "/start":
             text, reply_buttons = start_button()
             send_message(
@@ -68,8 +87,29 @@ def process_update_message(message: dict):
                 parse_mode="HTML",
                 inline_url_buttons=url_buttons,
             )
+        elif message_text == "/broadcast":
+            global broadcast_mode
+            if chat_id != OWNER_CHAT_ID:
+                return  # команда от постороннего пользователя (игнорируем)
+            broadcast_mode = True
+            send_message(chat_id=chat_id, text="Введите текст для рассылки: ")
+
+        elif broadcast_mode and chat_id == OWNER_CHAT_ID:
+            broadcast_mode = False  # возвращаем значение по умолчанию
+            text = message_text
+            users = user_storage.get_all_users()
+            print(users)
+            for user in users:
+                custom_text = f"Здравствуйте, {user.first_name}!\n\n{text}"
+                send_message(
+                    chat_id=user.telegram_id,
+                    text=custom_text,
+                )
+            send_message(chat_id=chat_id, text="Рассылка отправлена!")
+            return
 
     except Exception as e:
+        traceback.print_exc()
         print(f"The error is {repr(e)}")
 
 
@@ -121,5 +161,4 @@ while True:
 
     except Exception as e:
         print(f"The error is {e}")
-
     time.sleep(2)
