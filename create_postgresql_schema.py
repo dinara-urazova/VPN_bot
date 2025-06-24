@@ -38,7 +38,7 @@ with pg8000.connect(
         updated_at TIMESTAMP
         );
     """
-    print(f"[info] Trying to create table users...")
+    print("[info] Trying to create table users...")
     try:
         connection.execute_simple(sql_create_table)
         print("[info] OK")
