@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     postgresql_password: SecretStr
     postgresql_hostname: str
     postgresql_port: str
+    owner_chat_id: SecretStr
 
     model_config = SettingsConfigDict(env_file=".env")
 

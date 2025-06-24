@@ -8,7 +8,9 @@ with pg8000.connect(
     host=env_config.postgresql_hostname,
     port=env_config.postgresql_port,
 ) as connection:
-    print(f"[info] Connected to PostgreSQL {env_config.postgresql_hostname}:{env_config.postgresql_port}")
+    print(
+        f"[info] Connected to PostgreSQL {env_config.postgresql_hostname}:{env_config.postgresql_port}"
+    )
     print(f"[info] Trying to create database {env_config.postgresql_database}...")
     try:
         connection.execute_simple(f"CREATE DATABASE {env_config.postgresql_database}")
@@ -23,15 +25,17 @@ with pg8000.connect(
     port=env_config.postgresql_port,
     database=env_config.postgresql_database,
 ) as connection:
-    print(f"[info] Connected to PostgreSQL {env_config.postgresql_hostname}:{env_config.postgresql_port}/{env_config.postgresql_database}")
+    print(
+        f"[info] Connected to PostgreSQL {env_config.postgresql_hostname}:{env_config.postgresql_port}/{env_config.postgresql_database}"
+    )
     sql_create_table = """
     CREATE TABLE IF NOT EXISTS users (
         telegram_id BIGINT PRIMARY KEY NOT NULL,
         first_name VARCHAR(255) NOT NULL,
         last_name VARCHAR(255) NULL,
         username VARCHAR(255) NULL,
-        created_at TEXT,
-        updated_at TEXT
+        created_at TIMESTAMP,
+        updated_at TIMESTAMP
         );
     """
     print(f"[info] Trying to create table users...")
