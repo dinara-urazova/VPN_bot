@@ -15,6 +15,7 @@ from bot.buttons import (
     six_months,
 )
 
+OWNER_CHAT_ID  = 1059125420
 user_storage = UserStoragePostgreSQL()
 broadcast_mode = False
 
@@ -91,12 +92,12 @@ def process_update_message(message: dict):
             )
         elif message_text == "/broadcast":
             global broadcast_mode
-            if chat_id != env_config.owner_chat_id:
+            if chat_id != OWNER_CHAT_ID: # have to hide this (though doesn't work via env)
                 return  # команда от постороннего пользователя (игнорируем)
             broadcast_mode = True
             send_message(chat_id=chat_id, text="Введите текст для рассылки: ")
 
-        elif broadcast_mode and chat_id == env_config.owner_chat_id:
+        elif broadcast_mode and chat_id == OWNER_CHAT_ID: # have to hide this (though doesn't work via env)
             broadcast_mode = False  # возвращаем значение по умолчанию
             text = message_text
             users = user_storage.get_all_users()
