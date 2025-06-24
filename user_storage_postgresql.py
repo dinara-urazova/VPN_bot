@@ -24,9 +24,12 @@ class UserStoragePostgreSQL:
         return users
 
     def user_exists(self, telegram_id: int) -> bool:
+        """
+         just checks if a row exists, doesn't return any table data, can be unsafe (sql_injections) и дб параметризация (use %s as a placeholder, don't pass parameters directly), couldn't implement in pg8000.native
+        """
         result = PostgreSQLSingleton.getConnection().run(
-            f"SELECT 1 FROM users WHERE telegram_id = {telegram_id}"  # мб unsafe (sql_injections) и дб параметризация, но ее нет в pg8000.native
-        )
+            f"SELECT 1 FROM users WHERE telegram_id = {telegram_id}"
+        ) 
         return bool(
             result
         )  # True if there's a user  - list with 1, False if None (empty list)
@@ -44,4 +47,4 @@ class UserStoragePostgreSQL:
                 '{updated_at}'
             )
             """
-        )
+        )   # то же самое, что и в функции выше
