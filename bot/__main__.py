@@ -2,8 +2,6 @@ import traceback
 from bot.api_client import send_message, delete_message, get_updates
 from user_storage_postgresql import UserStoragePostgreSQL
 from user import User
-from bot.config_reader import env_config
-import time
 from bot.buttons import (
     start_button,
     status_button,
