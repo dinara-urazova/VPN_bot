@@ -38,7 +38,7 @@ class UserStoragePostgreSQL:
                     updated_at=row[5],
                 )
                 users.append(user)
-                return users
+            return users
 
     def user_exists(self, telegram_id: int) -> bool:
         with get_connection() as connection:
