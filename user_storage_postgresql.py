@@ -4,7 +4,8 @@ from datetime import datetime, timezone
 from bot.config_reader import env_config
 from typing import List
 
-class get_connection():
+
+class get_connection:
     def __enter__(self):
         self.connection = pg8000.connect(
             user=env_config.postgresql_username,
@@ -14,10 +15,9 @@ class get_connection():
             database=env_config.postgresql_database,
         )
         return self.connection
-    
+
     def __exit__(self, exc_type, exc_value, traceback):
         self.connection.close()
-
 
 
 class UserStoragePostgreSQL:
