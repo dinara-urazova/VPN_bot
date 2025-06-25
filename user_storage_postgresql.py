@@ -6,13 +6,14 @@ from typing import List
 
 
 def get_connection():
-    return pg8000.connect(
+    with pg8000.connect(
         user=env_config.postgresql_username,
         password=env_config.postgresql_password.get_secret_value(),
         host=env_config.postgresql_hostname,
         port=env_config.postgresql_port,
         database=env_config.postgresql_database,
-    )
+    ) as connection:
+        yield connection
 
 
 class UserStoragePostgreSQL:
