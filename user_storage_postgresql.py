@@ -19,7 +19,7 @@ def get_connection():
 class UserStoragePostgreSQL:
 
     def get_all_users(self) -> List[User]:
-        with get_connection() as connection:
+        connection = get_connection()
             cursor = connection.cursor()
             cursor.execute("SELECT * FROM users")
             rows = cursor.fetchall()
