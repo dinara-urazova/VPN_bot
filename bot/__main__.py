@@ -27,7 +27,7 @@ def process_update_message(message: dict):
 
         if (
             not chat_id or not user
-        ):  # убрала `if not message`, чтобы мб принимать 'not msg' и добавлять users в db
+        ):  # убрала `if not message`, чтобы мб принимать 'not msg' от users и добавлять users в db
             return None
 
         telegram_id = user.get("id")

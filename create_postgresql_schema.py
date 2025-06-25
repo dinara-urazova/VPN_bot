@@ -1,7 +1,7 @@
 import pg8000
-
 from bot.config_reader import env_config
 
+# создание БД
 with pg8000.connect(
     user=env_config.postgresql_username,
     password=env_config.postgresql_password.get_secret_value(),
@@ -18,6 +18,7 @@ with pg8000.connect(
     except Exception as e:
         print(f"[warning] {e}")
 
+# создание таблицы users
 with pg8000.connect(
     user=env_config.postgresql_username,
     password=env_config.postgresql_password.get_secret_value(),
